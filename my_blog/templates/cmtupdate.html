@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Commant Update
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <form method="POST" class="card p-3 shadow" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3><u> Comment Update</u></h3>
+            <div class="mb-3">
+                <label class="form-label"> content </label>
+                <textarea name="content" style="height: 200px;" type="text" class="form-control" >{{cmt.content}}</textarea>
+            </div>
+           <button type="submit" class="btn btn-pimary">Update</button>
+        </form>
+    </div>
+
+{% endblock %}

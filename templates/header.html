@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Nay Min Thu </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/list">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/create/">Create</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{user.username}}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">{{user.username}}</a></li>
+              <li><a class="dropdown-item" href="#">{{user.email}}</a></li>
+              
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/login">login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">register</a>
+          </li>
+          
+          {% endif %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              category
+            </a>
+            <form method="GET" action="{% url 'postlist' %}" class="dropdown-menu">
+              {% for c in categories %}
+              <li><button class="dropdown-item" name="category" value="{{c.id}}" type="submit">{{c.name}}</button></li>
+              {% endfor %}
+              
+            </form>
+          </li>
+            <form method="GET" action="{% url 'postlist' %}" class="d-flex">
+              <input name="search" required class="form-control me-2" type="search">
+              <button type="submit" class="btn btn-primary" >
+              Search
+              </button>
+            </form>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </nav>
